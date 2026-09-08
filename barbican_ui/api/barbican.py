@@ -16,6 +16,7 @@ import logging
 
 from django.conf import settings
 
+from horizon import exceptions
 from openstack_dashboard.api import base
 
 from keystoneauth1.identity import v3 as ks_v3
@@ -57,7 +58,7 @@ def barbicanclient(request):
     barbican_url = ''
     try:
         barbican_url = base.url_for(request, BARBICAN_SERVICE_TYPE)
-    except exceptions_base.ServiceCatalogException:
+    except exceptions.ServiceCatalogException:
         LOG.debug('No key-manager service configured in the catalog.')
         return None
 
