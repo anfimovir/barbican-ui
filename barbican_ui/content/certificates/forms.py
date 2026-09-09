@@ -75,7 +75,7 @@ class StoreCertificateForm(forms.SelfHandlingForm):
                 request,
                 name=data.get('name') or None,
                 payload=data['certificate_pem'],
-                payload_content_type='application/pkix-cert',
+                payload_content_type='text/plain',
                 secret_type='certificate',
                 expiration=data.get('expiration'),
             )
