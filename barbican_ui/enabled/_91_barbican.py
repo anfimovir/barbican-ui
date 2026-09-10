@@ -13,12 +13,9 @@
 #   1. Creates the "Key Manager" panel group inside the "project" dashboard.
 #   2. Registers the "Secrets" panel as the first entry in that group.
 #
-# Installation (manual):
+# Installation:
 #   cp barbican_ui/enabled/_91_barbican.py \
 #      <horizon>/openstack_dashboard/local/enabled/
-#
-# Installation (pip): the setup.cfg openstack_dashboard_config entry point
-# exposes this package's enabled module to Horizon packaging tools.
 
 # -------------------------------------------------------------------------
 # Panel Group  (created by this first enabled file; referenced by the rest)

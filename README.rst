@@ -25,10 +25,10 @@ All panels appear under **Project → Key Manager** in the Horizon sidebar:
 Requirements
 ------------
 
-* Python ≥ 3.9
+* Python ≥ 3.10
 * OpenStack Horizon ≥ 22.0 (Zed or later)
 * python-barbicanclient ≥ 5.0.1
-* keystoneauth1 ≥ 3.4.0
+* keystoneauth1 ≥ 4.2.1
 
 Installation
 ------------
@@ -39,9 +39,9 @@ Installation
 
     pip install barbican-ui
 
-When installed via pip the ``openstack_dashboard.enabled`` entry points in
-``setup.cfg`` register the panels automatically — no manual file copying
-is needed.
+pip installs the Python package only. Horizon discovers panels through the
+enabled files in ``local/enabled/``, so copy them as described under
+*Manual panel registration* below.
 
 **From source:**
 
