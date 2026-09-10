@@ -63,11 +63,6 @@ PAYLOAD_CONTENT_TYPES = (
     ('text/plain', _('Plain text  (text/plain)')),
     ('application/octet-stream', _('Binary  (application/octet-stream)')),
     ('application/pkcs8', _('PKCS#8 – Private Key')),
-    (
-        'application/pkix-cert',
-        _('X.509 Certificate DER  (application/pkix-cert)'),
-    ),
-    ('application/pkcs10', _('PKCS#10 – CSR')),
 )
 
 
