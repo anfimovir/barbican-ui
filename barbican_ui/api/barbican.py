@@ -27,7 +27,6 @@ from barbicanclient import client as barbican_client
 LOG = logging.getLogger(__name__)
 
 BARBICAN_SERVICE_TYPE = 'key-manager'
-BARBICAN_UI_USER_AGENT = 'barbican-ui'
 
 # ---------------------------------------------------------------------------
 # Client factory
