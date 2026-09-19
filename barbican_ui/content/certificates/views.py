@@ -112,6 +112,17 @@ class DownloadView(horizon_forms.ModalFormView):
         ref = barbican.build_ref(request, 'secrets', certificate_id)
         try:
             secret = barbican.secret_get(request, ref)
+
+            if getattr(secret, 'secret_type', None) != 'certificate':
+                exceptions.handle(
+                    request,
+                    _('The requested secret is not a certificate.'),
+                    redirect=reverse(
+                        'horizon:project:barbican_certificates:index'
+                    ),
+                )
+                return
+
             payload = barbican.secret_get_payload(request, ref)
             filename = (secret.name or certificate_id) + '.pem'
             # Ensure payload is a string; some content types return bytes
