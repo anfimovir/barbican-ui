@@ -52,15 +52,22 @@ def _barbican_endpoint(request):
 def barbicanclient(request):
     """Return a barbicanclient.Client using Horizon's token."""
 
-    insecure = getattr(settings, 'OPENSTACK_SSL_NO_VERIFY', False)
-    cacert = getattr(settings, 'OPENSTACK_SSL_CACERT', None)
+    insecure = getattr(settings, 'BARBICAN_INSECURE', False)
+    cacert = getattr(settings, 'BARBICAN_CACERT', None)
 
-    barbican_url = ''
-    try:
-        barbican_url = base.url_for(request, BARBICAN_SERVICE_TYPE)
-    except exceptions.ServiceCatalogException:
-        LOG.debug('No key-manager service configured in the catalog.')
-        return None
+    barbican_url = getattr(settings, 'BARBICAN_ENDPOINT', None)
+    if not barbican_url:
+        try:
+            barbican_url = base.url_for(
+                request,
+                BARBICAN_SERVICE_TYPE,
+                endpoint_type=getattr(
+                    settings, 'BARBICAN_ENDPOINT_TYPE', 'publicURL'
+                ),
+            )
+        except exceptions.ServiceCatalogException:
+            LOG.debug('No key-manager service configured in the catalog.')
+            return None
 
     LOG.debug(
         'barbicanclient connection created using token "%s" and url "%s"',
