@@ -149,7 +149,7 @@ class CreateSecretForm(forms.SelfHandlingForm):
 
     def handle(self, request, data):
         try:
-            payload = (data.get('payload') or '').strip() or None
+            payload = data.get('payload') or None
             ref = barbican.secret_create(
                 request,
                 name=data.get('name') or None,
