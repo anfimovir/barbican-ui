@@ -306,7 +306,7 @@ def acl_submit(request, entity_ref, users=None,
     acl_list = c.acls.get(entity_ref)
 
     # Check whether an ACLEntity already exists for this operation
-    existing = getattr(acl_list, operation_type, None)
+    existing = acl_list.get(operation_type)
 
     if existing is not None:
         # Mutate in place — barbicanclient tracks dirty state internally
