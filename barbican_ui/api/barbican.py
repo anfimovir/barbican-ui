@@ -294,8 +294,8 @@ def acl_submit(request, entity_ref, users=None,
       1. acls.get(entity_ref) -> ACLList object
       2. ACLList has per-operation attributes: acl_list.read, acl_list.write
       3. To update, mutate the ACLEntity attributes then call acl_list.submit()
-      4. If no ACLEntity exists for the operation yet, call acl_list.add(...)
-         before submit().
+      4. If no ACLEntity exists for the operation yet, call
+         acl_list.add_operation_acl(...) before submit().
 
     :param entity_ref:      Full Barbican href of the secret or container.
     :param users:           List of Keystone user UUID strings.
@@ -314,8 +314,8 @@ def acl_submit(request, entity_ref, users=None,
         existing.project_access = bool(project_access)
     else:
         # No existing ACL for this operation — create one
-        acl_list.add(
-            operation_type,
+        acl_list.add_operation_acl(
+            operation_type=operation_type,
             users=list(users or []),
             project_access=bool(project_access),
         )
