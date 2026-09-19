@@ -12,6 +12,7 @@ import logging
 from django.http import HttpResponse
 from django.urls import reverse
 from django.urls import reverse_lazy
+from django.utils.http import content_disposition_header
 from django.utils.translation import gettext_lazy as _
 
 from horizon import exceptions
@@ -123,8 +124,8 @@ class DownloadView(horizon_forms.ModalFormView):
                 payload_data,
                 content_type='application/x-pem-file',
             )
-            response['Content-Disposition'] = (
-                'attachment; filename="%s"' % filename
+            response['Content-Disposition'] = content_disposition_header(
+                True, filename
             )
             return response
         except Exception:
