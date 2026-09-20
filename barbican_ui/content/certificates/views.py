@@ -83,7 +83,7 @@ class DetailView(horizon_tabs.TabView):
 
     def get_tabs(self, request, *args, **kwargs):
         return self.tab_group_class(
-            request, certificate=self._get_certificate(), **kwargs
+            request, certificate=self._get_certificate()
         )
 
 
