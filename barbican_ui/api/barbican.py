@@ -213,7 +213,10 @@ def container_secret_refs(container):
                 'ref': str(getattr(secret_ref, 'secret_ref', secret_ref)),
             })
     except Exception:
-        pass
+        LOG.exception(
+            'Failed to extract secret references from container %s',
+            getattr(container, 'container_ref', container),
+        )
     return refs
 
 
