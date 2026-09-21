@@ -125,7 +125,8 @@ class CreateOrderForm(forms.SelfHandlingForm):
             return None
         for fmt in ('%Y-%m-%dT%H:%M:%S', '%Y-%m-%d'):
             try:
-                return datetime.datetime.strptime(value, fmt)
+                return datetime.datetime.strptime(
+                    value, fmt).replace(tzinfo=datetime.timezone.utc)
             except ValueError:
                 continue
         raise forms.ValidationError(
