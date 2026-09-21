@@ -80,14 +80,14 @@ Horizon loads every ``*.py`` file from ``local/enabled/`` in filename
 (lexicographic) order at startup. ``barbican_ui/enabled/_91_barbican.py``
 will create group. Each file registers exactly one panel:
 
-=========================================================================  ================  =============
+=========================================================================  ================  ==============
 File                                                                       Panel             Creates Group?
-=========================================================================  ================  =============
+=========================================================================  ================  ==============
 ``_9110_barbican_project_add_secrets_to_key_manager_panel_group.py``       Secrets           No 
-``_9120_barbican_project_add_certificates_to_key_manager_panel_group.py``  Containers        No
-``_9130_barbican_project_add_containers_to_key_manager_panel_group.py``    Orders            No
-``_9140_barbican_project_add_orders_to_key_manager_panel_group.py``        Certificates      No
-=========================================================================  ================  =============
+``_9120_barbican_project_add_certificates_to_key_manager_panel_group.py``  Certificates      No
+``_9130_barbican_project_add_containers_to_key_manager_panel_group.py``    Containers        No
+``_9140_barbican_project_add_orders_to_key_manager_panel_group.py``        Orders            No
+=========================================================================  ================  ==============
 
 The ``_91_`` file also declares ``ADD_INSTALLED_APPS`` and
 ``AUTO_DISCOVER_STATIC_FILES`` — the remaining files are intentionally
