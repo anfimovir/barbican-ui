@@ -10,12 +10,14 @@
 import logging
 
 from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
 from horizon import exceptions
 from horizon import forms as horizon_forms
+from horizon import messages
 from horizon import tables as horizon_tables
 from horizon import tabs as horizon_tabs
 
@@ -112,16 +114,14 @@ class DownloadView(horizon_forms.ModalFormView):
         ref = barbican.build_ref(request, 'secrets', certificate_id)
         try:
             secret = barbican.secret_get(request, ref)
-
             if getattr(secret, 'secret_type', None) != 'certificate':
-                exceptions.handle(
+                messages.error(
                     request,
                     _('The requested secret is not a certificate.'),
-                    redirect=reverse(
-                        'horizon:project:barbican_certificates:index'
-                    ),
                 )
-                return
+                return redirect(
+                    'horizon:project:barbican_certificates:index'
+                )
 
             payload = barbican.secret_get_payload(request, ref)
             filename = (secret.name or certificate_id) + '.pem'
