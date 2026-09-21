@@ -11,7 +11,7 @@
 
 from django.conf import settings
 
-# Barbican's max_limit_paging is 100; one extra row detects a next page.
+# Barbican's default max_limit_paging is 100; an extra row detects a next page.
 MAX_PAGE_SIZE = 99
 
 
