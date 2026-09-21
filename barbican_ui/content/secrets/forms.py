@@ -104,6 +104,7 @@ class CreateSecretForm(forms.SelfHandlingForm):
     payload = forms.CharField(
         label=_('Payload'),
         required=False,
+        strip=False,
         widget=forms.widgets.Textarea(attrs={'rows': 6}),
         help_text=_(
             'The secret value. Leave blank to create a metadata-only secret.'
@@ -149,7 +150,7 @@ class CreateSecretForm(forms.SelfHandlingForm):
 
     def handle(self, request, data):
         try:
-            payload = (data.get('payload') or '').strip() or None
+            payload = data.get('payload') or None
             ref = barbican.secret_create(
                 request,
                 name=data.get('name') or None,
