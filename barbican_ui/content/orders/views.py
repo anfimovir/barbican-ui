@@ -19,9 +19,9 @@ from horizon import tables as horizon_tables
 from horizon import views
 
 from barbican_ui.api import barbican
-from barbican_ui.content import pagination
 from barbican_ui.content.orders import forms
 from barbican_ui.content.orders import tables
+from barbican_ui.content import pagination
 
 LOG = logging.getLogger(__name__)
 
