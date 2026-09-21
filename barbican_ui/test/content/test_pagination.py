@@ -31,7 +31,7 @@ def _view(view_class, query=''):
 
 
 def _rows(count):
-    return [mock.Mock(secret_ref='ref-%d' % i) for i in range(count)]
+    return [mock.Mock(secret_ref=f'ref-{i}') for i in range(count)]
 
 
 def test_first_page_asks_for_one_extra_row(settings):
