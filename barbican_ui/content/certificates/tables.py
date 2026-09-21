@@ -55,7 +55,7 @@ class DownloadCertificate(tables.LinkAction):
     name = 'download'
     verbose_name = _('Download PEM')
     icon = 'download-alt'
-    policy_rules = (('key-manager', 'secret:get'),)
+    policy_rules = (('key-manager', 'secret:decrypt'),)
 
     def get_link_url(self, secret):
         uuid = barbican.ref_to_uuid(secret.secret_ref)
