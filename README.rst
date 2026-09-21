@@ -26,7 +26,7 @@ Requirements
 ------------
 
 * Python ≥ 3.10
-* OpenStack Horizon ≥ 22.0 (Zed or later)
+* OpenStack Horizon ≥ 24.0 (2024.1 Caracal or later)
 * python-barbicanclient ≥ 5.0.1
 * keystoneauth1 ≥ 4.2.1
 
