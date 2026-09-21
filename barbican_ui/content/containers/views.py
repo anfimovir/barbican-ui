@@ -19,10 +19,10 @@ from horizon import tables as horizon_tables
 from horizon import tabs as horizon_tabs
 
 from barbican_ui.api import barbican
-from barbican_ui.content import pagination
 from barbican_ui.content.containers import forms
 from barbican_ui.content.containers import tables
 from barbican_ui.content.containers import tabs as container_tabs
+from barbican_ui.content import pagination
 
 LOG = logging.getLogger(__name__)
 
