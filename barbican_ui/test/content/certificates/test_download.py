@@ -59,3 +59,24 @@ def test_download_encodes_a_non_ascii_filename():
         "attachment; filename*=utf-8''"
         '%D1%81%D0%B5%D1%80%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%82.pem'
     )
+
+
+@pytest.mark.urls('barbican_ui.test.content.certificates.test_views')
+@pytest.mark.parametrize('secret_type', ['opaque', 'passphrase', None])
+def test_download_refuses_a_secret_that_is_not_a_certificate(secret_type):
+    secret = SimpleNamespace(name='key', secret_type=secret_type)
+    shown = []
+
+    with mock.patch.object(views.barbican, 'secret_get',
+                           return_value=secret), \
+            mock.patch.object(views.barbican,
+                              'secret_get_payload') as get_payload, \
+            mock.patch.object(views.messages, 'error',
+                              side_effect=lambda r, m: shown.append(str(m))):
+        response = views.DownloadView.as_view()(
+            RequestFactory().get('/'), certificate_id='abc')
+
+    assert response.status_code == 302
+    assert response['Location'] == '/project/certificates/'
+    assert shown == ['The requested secret is not a certificate.']
+    get_payload.assert_not_called()
