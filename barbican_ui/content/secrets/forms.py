@@ -104,6 +104,7 @@ class CreateSecretForm(forms.SelfHandlingForm):
     payload = forms.CharField(
         label=_('Payload'),
         required=False,
+        strip=False,
         widget=forms.widgets.Textarea(attrs={'rows': 6}),
         help_text=_(
             'The secret value. Leave blank to create a metadata-only secret.'
